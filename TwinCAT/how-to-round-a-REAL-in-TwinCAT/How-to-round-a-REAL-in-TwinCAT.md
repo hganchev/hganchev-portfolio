@@ -43,6 +43,34 @@ The size of the types is given in the following table:
 | REAL 	   | -3.402823e+38 				| 3.402823e+38 					|32-bit			|
 | LREAL    | -1.7976931348623158e+308   | 1.7976931348623158e+308 		|32-bit			|
 
+## Functions we will need
+
+To round a REAL value we will need to use the following functions:
+```pascal
+TRUNC
+```
+
+>This IEC operator converts from the data type REAL to the data type DINT. TwinCAT only uses the integer part of the number.
+
+To use the TRUNC function we need to do it like this:
+```pascal
+rDINT := TRUNC(3.14);
+```
+where rDINT is the variable that will hold the integer part of the REAL value in our case it will be equal to 3.
+
+```pascal
+EXPT(base,exponent)
+```
+
+>The IEC operator exponentiates one number with another and returns the base to the power of the exponent: power = baseexponent. Both base and exponent are input values (parameters). The power function is not defined if the base is 0 and the exponent is negative at the same time. However, the behavior in this case depends on the platform.
+
+To use the EXPT function we need to do it like this:
+```pascal
+rDINT := EXPT(2,3);
+```
+where rDINT is the variable that will hold the result of the exponentiation in our case it will be equal to 8.
+
+
 ## Why we need to round REAL/LREAL
 
 REAL and LREAL values are used to store decimal numbers. The problem is that the PLC can't store all decimal numbers. For example if we want to store the number 0.1 in a REAL variable the value that will be stored will be 0.10000000149011612. This is because the PLC can't store all decimal numbers and it stores the closest value to the number that we want to store.
@@ -54,14 +82,14 @@ Let's make a test:
 rTestReal : REAL;
 ```
 
-2. Second step is to define a devidend REAL variable and assign it the value of 10.10. 
+2. Second step is to define a devidend REAL variable and assign it the value of 22. 
 ```pascal
-rDevidend : REAL := 10.1;
+rDevidend : REAL := 22.00;
 ```
 
-3. Third step is to define a devisor REAL variable and assign it the value of 0.55. 
+3. Third step is to define a devisor REAL variable and assign it the value of 7. 
 ```pascal
-rDevisor : REAL := 0.55;
+rDevisor : REAL := 7.00;
 ```
 
 4. Fourth step is to assign the value of the devidend devided by the devisor to the test REAL variable. 
@@ -69,11 +97,11 @@ rDevisor : REAL := 0.55;
 rTestReal := rDevidend / rDevisor;
 ```
 
-The result of the devision will be **18.363636**.
+The result of the devision will be **3.142857**.
 
 ![Alt text](REAL_Devision.PNG)
 
-And if we want to show the value of the test REAL variable, let's say on a HMI, or we want to export it to a text file, the value will be too long. That's one way why we need to round the value of the REAL variable.
+>:attention: So if we want to show the value of the test REAL variable, let's say on a HMI, or we want to export it to a text file, the value will be too long. That's one way why we need to round the value of the REAL variable.
 
 ## What needs to be done?
 
