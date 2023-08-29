@@ -82,9 +82,9 @@ Let's make a test:
 rTestReal : REAL;
 ```
 
-2. Second step is to define a devidend REAL variable and assign it the value of 22. 
+2. Second step is to define a dividend REAL variable and assign it the value of 22. 
 ```pascal
-rDevidend : REAL := 22.00;
+rDividend : REAL := 22.00;
 ```
 
 3. Third step is to define a devisor REAL variable and assign it the value of 7. 
@@ -92,12 +92,12 @@ rDevidend : REAL := 22.00;
 rDevisor : REAL := 7.00;
 ```
 
-4. Fourth step is to assign the value of the devidend devided by the devisor to the test REAL variable. 
+4. Fourth step is to assign the value of the dividend divided by the devisor to the test REAL variable. 
 ```pascal
-rTestReal := rDevidend / rDevisor;
+rTestReal := rDividend / rDevisor;
 ```
 
-The result of the devision will be **3.142857**.
+The result of the division will be **3.142857**.
 
 ![Alt text](REAL_Devision.PNG)
 
@@ -148,7 +148,7 @@ rOutput := rInput * EXPT(10,iDecimalPlaces);
 ```
 The EXPT function will take the first parameter and will raise it to the power of the second parameter. In our case the result will be 100022,2222.
 
-2. Second step is to get the left part of the REAL value. We can do it with the function **TRUNC**. This function will take only the integer part of the REAL value. In our case the integer part of the REAL value is 1000. Then we want to substract the integer part from the REAL value.
+2. Second step is to get the left part of the REAL value. We can do it with the function **TRUNC**. This function will take only the integer part of the REAL value. In our case the integer part of the REAL value is 1000. Then we want to subtract the integer part from the REAL value.
 ```pascal
 rLeftPart := rOutput - TRUNC(rOutput);
 ```

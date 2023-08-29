@@ -1,4 +1,4 @@
-# How to split a STRING in TwinCATIntroduction
+# How to split a STRING in TwinCAT
 ### Autor: Hristo Ganchev (https://github.com/hganchev)
 #### Date: 2023-23-08
 
