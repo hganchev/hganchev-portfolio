@@ -41,7 +41,7 @@ The size of the types is given in the following table:
 | Data Type| Lower limit  				|  Upper Limit  				| Storage Space |
 |----------|:--------------------------:|:-----------------------------:|:-------------:|
 | REAL 	   | -3.402823e+38 				| 3.402823e+38 					|32-bit			|
-| LREAL    | -1.7976931348623158e+308   | 1.7976931348623158e+308 		|32-bit			|
+| LREAL    | -1.7976931348623158e+308   | 1.7976931348623158e+308 		|64-bit			|
 
 ## Functions we will need
 
