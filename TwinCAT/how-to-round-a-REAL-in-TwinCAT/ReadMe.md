@@ -157,9 +157,12 @@ rLeftPart := rOutput - TRUNC(rOutput);
 In our case the result will be 0,222222.
 
 3. Third step is to check if the left part is greater than 0.5. If it is greater than 0.5 we need to add 1 to the integer part of the REAL value. If it is less than 0.5 we don't need to do anything.
+If the value is negative we need to subtract 1 if it is less or equal to -0.5.
 ```pascal
 IF rLeftPart >= 0.5 THEN
 	rOutput := rOutput + 1;
+ELSIF rLeftPart <= -0.5 THEN
+	rOutput := rOutput - 1;
 ELSE
 	rOutput := rOutput;
 END_IF
@@ -190,6 +193,8 @@ rOutput := rInput * EXPT(10,iDecimalPlaces);
 rLeftPart := rOutput - TRUNC(rOutput);
 IF rLeftPart >= 0.5 THEN
 	rOutput := rOutput + 1;
+ELSIF rLeftPart <= -0.5 THEN
+	rOutput := rOutput - 1;
 ELSE
 	rOutput := rOutput;
 END_IF
