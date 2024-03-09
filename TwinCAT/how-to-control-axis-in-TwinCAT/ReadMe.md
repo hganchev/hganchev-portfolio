@@ -282,6 +282,149 @@ When Execute is **TRUE** the axis will start stopping. The deceleration and jerk
 
 When the axis is stopping, the Busy is **TRUE**. When the axis is stopped, the Done is **TRUE**.
 
+## Example of logic to control the axis
+```pascal
+FUNCTION_BLOCK MC_AxisControl
+
+VAR_INPUT	
+END_VAR
+VAR_IN_OUT
+	axisRef			: AXIS_REF;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	// Controls
+	bEnable				: BOOL;
+	bHome				: BOOL;
+	bReset				: BOOL;
+	bMove				: BOOL;
+	bStop				: BOOL;
+	                	
+	// Statuses     	
+	bEnabled			: BOOL;
+	bReferenced			: BOOL;
+	bError				: BOOL;
+	nErrorID			: UDINT;
+	bMoving				: BOOL;
+	bInPosition			: BOOL;
+	nActualPosition		: LREAL;
+	nActualVelocity		: LREAL;
+	
+	// Settings
+	nTargetPosition		: LREAL;
+	nTargetVelocity		: LREAL;
+	nTargetAcceleration	: LREAL;
+	stHomingOptions		: ST_HomingOptions;
+	
+	fbEnable			: MC_Power;
+	fbHome				: MC_Home;
+	fbMove				: MC_MoveAbsolute;
+	fbReset				: MC_Reset;
+	fbActualPosition	: MC_ReadActualPosition;
+	fbActualVelocity	: MC_ReadActualVelocity;
+END_VAR
+```
+
+```pascal
+// Power On - power on/off the axis
+fbEnable(
+	Axis:= axisRef, 
+	Enable:= bEnable, 
+	Enable_Positive:= bEnable, 
+	Enable_Negative:= bEnable, 
+	Override:= , 
+	BufferMode:= , 
+	Options:= , 
+	Status=> bEnabled, 
+	Busy=> , 
+	Active=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// Home - Reference the axis
+stHomingOptions.ReferenceMode := E_EncoderReferenceMode.ENCODERREFERENCEMODE_DEFAULT;
+stHomingOptions.SearchDirection := MC_Direction.MC_Negative_Direction;
+stHomingOptions.SearchVelocity := 10;
+fbHome(
+	Axis:= axisRef, 
+	Execute:= bHome AND bEnabled, 
+	Position:= 0, 
+	HomingMode:= MC_HomingMode.MC_DefaultHoming, 
+	BufferMode:= , 
+	Options:= stHomingOptions, 
+	bCalibrationCam:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// Reset - reset error of axis
+fbReset(
+	Axis:= axisRef, 
+	Execute:= bReset, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// Move Absolute - move to absolute position
+fbMove(
+	Axis:= axisRef, 
+	Execute:= bMove AND bEnabled, 
+	Position:= nTargetPosition, 
+	Velocity:= nTargetVelocity, 
+	Acceleration:= nTargetAcceleration, 
+	Deceleration:= nTargetAcceleration, 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// Status Actual Position
+fbActualPosition(
+	Axis:= axisRef, 
+	Enable:= TRUE, 
+	Valid=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Position=> nActualPosition);
+
+// Status Actual Velocity	
+fbActualVelocity(
+	Axis:= axisRef, 
+	Enable:= TRUE, 
+	Valid=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	ActualVelocity=> nActualVelocity);
+	
+// Statuses
+axisRef.ReadStatus();
+bReferenced := axisRef.Status.Homed;
+bMoving := axisRef.Status.Moving;
+bInPosition := axisRef.Status.InTargetPosition AND ABS(nTargetPosition - nActualPosition) < 0.1;
+bError := axisRef.Status.Error;
+nErrorID := axisRef.Status.ErrorID;
+
+// Reset Move
+IF bInPosition AND NOT bMoving THEN
+	bMove := FALSE;
+END_IF
+	
+```
+Where **axisRef** is the reference to the axis.
+
+
 ## Example of the usage can be find in the following link:
 [twincat-tools](https://github.com/hganchev/twincat-tools/tree/main/TwinCAT%20Tools/twincat-tools/POUs/AxisControl) library.
 
