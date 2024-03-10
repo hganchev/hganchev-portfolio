@@ -2,6 +2,8 @@
 ### Autor: Hristo Ganchev (https://github.com/hganchev)
 #### Date: 2024-05-March
 
+![alt text](Axis-Control.png)
+
 ## Introduction
 
 TwinCAT is a PLC programming software from Beckhoff. It is based on CODESYS and **IEC 61131-3** standard and it is used to program Beckhoff PLCs. 
