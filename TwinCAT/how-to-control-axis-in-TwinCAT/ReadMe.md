@@ -1,4 +1,4 @@
-# How to round a REAL/LREAL in TwinCAT
+# How to control axis/motor in TwinCAT/Codesys
 ### Autor: Hristo Ganchev (https://github.com/hganchev)
 #### Date: 2024-05-March
 
@@ -120,10 +120,10 @@ When Execute is **TRUE** the axis will start moving to the home position. The ho
 
 HomingMode determines in which way the calibration is carried out.
 
-- **MC_DefaultHoming** - Initiates standard homing.
-- **MC_Direct** - Sets the axis position directly to Position without executing a movement.
-- **MC_ForceCalibration** - Enforces the "axis is calibrated" state. No movement takes place, and the position remains unchanged.
-- **MC_ResetCalibration** - Resets the calibration state of the axis. No movement takes place, and the position remains unchanged.
+>- **MC_DefaultHoming** - Initiates standard homing.
+>- **MC_Direct** - Sets the axis position directly to Position without executing a movement.
+>- **MC_ForceCalibration** - Enforces the "axis is calibrated" state. No movement takes place, > and the position remains unchanged.
+>- **MC_ResetCalibration** - Resets the calibration state of the axis. No movement takes place, and the position remains unchanged.
 
 When the axis is moving to the home position, the Busy is **TRUE**. When the axis is at the home position, the Done is **TRUE**.
 
@@ -325,6 +325,7 @@ VAR
 	fbActualVelocity	: MC_ReadActualVelocity;
 END_VAR
 ```
+Where **axisRef** is the reference to the axis.
 
 ```pascal
 // Power On - power on/off the axis
@@ -422,8 +423,6 @@ IF bInPosition AND NOT bMoving THEN
 END_IF
 	
 ```
-Where **axisRef** is the reference to the axis.
-
 
 ## Example of the usage can be find in the following link:
 [twincat-tools](https://github.com/hganchev/twincat-tools/tree/main/TwinCAT%20Tools/twincat-tools/POUs/AxisControl) library.
