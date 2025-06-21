@@ -56,6 +56,20 @@ Discover effective string manipulation techniques in TwinCAT programming:
 
 ---
 
+### 🔧 [How to Implement State Machine Programming in TwinCAT](./how-to-state-machine-in-TwinCAT/)
+**Date: June 2025**
+
+Master the art of structured automation programming with state machines - the foundation of robust industrial control systems:
+- Understanding state machine concepts and design patterns
+- Implementation with CASE statements and function blocks
+- Error handling and recovery strategies
+- Practical examples: Traffic light controller and conveyor systems
+- Best practices for maintainable and safe automation code
+
+[📖 Read Full Article](./how-to-state-machine-in-TwinCAT/ReadMe.md)
+
+---
+
 ## Getting Started
 
 These articles are designed for PLC programmers who want to enhance their TwinCAT skills. Each tutorial includes:
