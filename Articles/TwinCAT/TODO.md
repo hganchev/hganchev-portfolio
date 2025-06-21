@@ -24,7 +24,7 @@
   - Subscribing to external commands
 
 ## 🎯 Recommended Next Article
-- [ ] **How to Implement State Machine Programming in TwinCAT** ⭐
+- [x] **How to Implement State Machine Programming in TwinCAT** ⭐
   - State machine design patterns
   - Implementation with CASE statements
   - Error handling in state machines
