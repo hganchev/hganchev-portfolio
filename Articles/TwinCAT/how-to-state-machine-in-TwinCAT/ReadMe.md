@@ -1,4 +1,8 @@
 # How to Implement State Machine Programming in TwinCAT
+### Autor: Hristo Ganchev (https://github.com/hganchev)
+#### Date: 2025-21-06
+
+![Alt text](StateMachine.webp)
 
 *Master the art of structured automation programming with state machines - the foundation of robust industrial control systems*
 
