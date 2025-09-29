@@ -1,4 +1,4 @@
-### **Microservice Architecture** project [e-commerce microservices](https://github.com/DHS-Soft-Hub/e-commerce-microservice-project)
+### **Microservice Architecture** project 
 **Technologies used**:
 - ![](https://img.shields.io/badge/dotnet-005571?style=for-the-badge&logo=dotnet&logoColor=white)
 - ![](https://img.shields.io/badge/java-005571?style=for-the-badge&logo=java&logoColor=white)
